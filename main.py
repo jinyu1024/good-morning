@@ -38,7 +38,7 @@ def get_words():
     return get_words()
   return words.json()['data']['text']
 
-def get_rand om_color():
+def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
 
