@@ -34,8 +34,7 @@ def get_birthday():
 
 def get_words():
   words = requests.get("http://api.tianapi.com/zaoan/index?key=611d2adcfc2316f0ded280cd74407d8a")
-  if words.status_code != 200:
-    return get_words()
+
   return words
 
 def get_random_color():
