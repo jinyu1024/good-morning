@@ -33,7 +33,7 @@ def get_birthday():
   return (next - today).days
 
 def get_words():
-  words = requests.get("http://api.tianapi.com/zaoan/index?key=611d2adcfc2316f0ded280cd74407d8a")
+  words = stringrequests.get("http://api.tianapi.com/zaoan/index?key=611d2adcfc2316f0ded280cd74407d8a")
 
   return words
 
