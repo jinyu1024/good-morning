@@ -34,12 +34,8 @@ def get_birthday():
 
 def get_words():
   
-   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
-  res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  
-  words = requests.get("http://api.tianapi.com/zaoan/index?key=611d2adcfc2316f0ded280cd74407d8a").json()
-  words = res['newslist']['list'][0]
+  word = requests.get("http://api.tianapi.com/zaoan/index?key=611d2adcfc2316f0ded280cd74407d8a").json()
+  words = word['newslist']['list'][0]
   return words
 
 def get_random_color():
