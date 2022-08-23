@@ -36,7 +36,7 @@ def get_words():
   
   word = requests.get("http://api.tianapi.com/zaoan/index?key=611d2adcfc2316f0ded280cd74407d8a").json()
   words = word['newslist']['list'][0]
-  return words
+  return words['content']
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
