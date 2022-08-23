@@ -22,7 +22,7 @@ def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
   weather = res['data']['list'][0]
-  return weather['weather'], weather['temp']，weather['low']，weather['high']，weather['date']
+  return weather['weather'], weather['temp']，weather['low']，weather['high']，weather['date'].date()
 
 
 
@@ -33,10 +33,10 @@ def get_birthday():
   return (next - today).days
 
 def get_words():
-  words = requests.get("https://api.shadiao.pro/chp")
+  words = requests.get("http://api.tianapi.com/zaoan/index?key=611d2adcfc2316f0ded280cd74407d8a")
   if words.status_code != 200:
     return get_words()
-  return words.json()['data']['text']
+  return words
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
@@ -45,7 +45,8 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-wea, temperature = get_weather()
-data = {"weather":{"value":wea, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"kaoyan":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
+wea, temperature, low_temp, high_temp, day = get_weather()
+data = {"today":{"value":day, "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"weather":{"value":low_temp, "color":get_random_color()},"weather":{"value":high_temp, "color":get_random_color()},
+        "kaoyan":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
